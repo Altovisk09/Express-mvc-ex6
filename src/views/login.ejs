@@ -10,9 +10,15 @@
     <%-include('./partials/navbar')%>
     <main>
         <section>
-            <figure class="gif">
-                <img src="https://thumbs.gfycat.com/AstonishingDentalGermanspitz-size_restricted.gif" alt="gif">
-            </figure>
+            <form action="/login" method="post">
+                <div class="info">
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email">
+                <label for="password">Senha:</label>
+                <input type="password" name="password" id="password">
+                </div>
+                <button type="submit">Login</button>
+            </form>
         </section>
     </main>
     <%-include('./partials/footer')%>

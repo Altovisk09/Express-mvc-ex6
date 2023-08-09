@@ -1,4 +1,5 @@
 const fs = require('fs');
+const bcrypt = require('bcrypt')
 
 const Users = {
     filename: "./src/database/usersData.json",
@@ -20,6 +21,7 @@ const Users = {
         let newUser = {
             id: this.generateId(),
             ...req.body,
+            password: bcrypt.hashSync(req.body.password, 10), // Hash da senha
             // avatar: req.file
         };
         allUsers.push(newUser);
@@ -41,3 +43,5 @@ const Users = {
         return userFound;
     },
 }
+
+module.exports = Users;

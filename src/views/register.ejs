@@ -1,20 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercado CRUD</title>
     <link rel="stylesheet" href="/stylesheets/login.css">
 </head>
+
 <body>
     <%-include('./partials/navbar')%>
-    <main>
-        <section>
-            <figure class="gif">
-                <img src="https://thumbs.gfycat.com/AstonishingDentalGermanspitz-size_restricted.gif" alt="gif">
-            </figure>
-        </section>
-    </main>
-    <%-include('./partials/footer')%>
+        <main>
+            <section>
+                <form action="/register" method="post">
+                    <div class="name">
+                        <label for="name">Nome:</label>
+                        <input type="text" name="name" id="name">
+
+                        <label for="lastName">Sobrenome:</label>
+                        <input type="text" name="lastName" id="lastName">
+                    </div>
+                    <div class="info">
+                        <label for="email">Email:</label>
+                        <input type="text" name="email" id="email" placeholder="Insira seu email">
+
+                        <label for="password">Senha:</label>
+                        <input type="password" name="password" id="password" placeholder="Insira sua senha">
+                    </div>
+                    <!-- <div>
+                        <label for="avatar">Avatar:</label>
+                        <input type="file" name="avatar" id="avatar">
+                    </div> -->
+                    <button type="submit">Cadastrar</button>
+                </form>
+            </section>
+        </main>
+        <%-include('./partials/footer')%>
 </body>
+
 </html>
