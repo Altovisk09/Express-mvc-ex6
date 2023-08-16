@@ -5,80 +5,84 @@ const usersController = {
     index:(req, res)=>{
         res.render('index');
     },
-    resgister:(req, res)=>{
+    register:(req, res)=>{
         res.render('register');
     },
     registerProcess: (req, res) => {
         const errors = {};
-    
         try {
             if (!req.body) {
                 throw new Error('Todos os campos precisam ser preenchidos.');
             }
     
+            
+    
             if (!req.body.name) {
-                errors.nome = 'É necessário preencher o seu nome.';
+                errors.name = new Error('É necessário preencher o seu nome.');
             }
     
             if (!req.body.lastName) {
-                errors.lastName = 'É necessário preencher o seu Sobrenome.';
+                errors.lastName = new Error('É necessário preencher o seu sobrenome.');
             }
     
             if (!req.body.email) {
-                errors.email = 'É necessário inserir o seu email.';
+                errors.email = new Error('É necessário inserir o seu email.');
             } else if (Users.findUserByfield('email', req.body.email)) {
-                errors.email = 'Esse email já está sendo utilizado.';
+                errors.email = new Error('Esse email já está sendo utilizado.');
             }
     
             if (!req.body.password) {
-                errors.password = 'É necessário inserir uma senha.';
+                errors.password = new Error('É necessário inserir uma senha.');
             } else if (req.body.password.length < 6) {
-                errors.password = 'A senha precisa possuir no mínimo 6 caracteres.';
+                errors.password = new Error('A senha deve ter pelo menos 6 caracteres.');
             }
     
-            // if (!req.file) {
-            //     errors.avatar = 'Selecione um avatar válido.';
-            // }
-            if(errors){
-                console.log(errors)
-            }
+            // Validar o avatar, se necessário
+    
             if (Object.keys(errors).length === 0) {
                 Users.create(req);
                 res.redirect('/login'); // Redireciona para a página de login após o registro bem-sucedido
-            }else{
-                throw new Error('Não foi possível registrar seu usuario')
             }
-        } catch (error) {
-            res.render('register', { errors });
+        } catch(err) {
+            console.log();
+            res.render('register', {});
         }
-    },
-    
+        console.log()
+    },    
     login:(req, res)=>{
         res.render('login');
     },
     loginProcess: (req, res) => {
         try {
-            const userFound = Users.findUserByfield('email', req.body.email);
-
-            if(!req.body){
-                throw new Error('Todos os campos precisam ser preenchidos')
+            const userValidad = Users.findUserByfield('email', req.body.email);
+    
+            if (!req.body.email || 
+                (!req.body.email.includes("@") || 
+                 (!req.body.email.includes(".com") && !req.body.email.includes(".com.br")))) {
+                throw new Error('Insira um email válido');
             }
-            if(!req.body.email){
-                throw new Error('Insira um email valido')
+            if (!req.body.password) {
+                throw new Error('Insira sua senha');
             }
-            if(!req.body.password){
-                throw new Error('Insira sua senha')
-            }
-            if (userFound && bcrypt.compareSync(req.body.password, userFound.password)) {
-                res.redirect('/profile');
+            if (userValidad && bcrypt.compareSync(req.body.password, userValidad.password)) {
+                delete userValidad.password;
+                req.session.user = userValidad;
+                console.log(userValidad)
+                if (req.body.remember_user) {
+                    res.cookie('logMail', userValidad.email, { maxAge: 1000 * 60 * 60 });
+                }
+                res.redirect('/');
             } else {
                 throw new Error('As informações inseridas são inválidas');
             }
         } catch (error) {
-            res.render('login', { errors: { login: error.message } });
+            console.log(error.message);
+            res.render('login', {
+                errors: error.message,
+                oldData: req.body
+            });
         }
     },
-    
     profile:(req, res)=>{
         res.render('profile');
     },

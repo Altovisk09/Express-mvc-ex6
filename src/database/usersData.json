@@ -5,5 +5,12 @@
   "lastName": "Elias",
   "email": "teste@gmail.com",
   "password": "$2b$10$fD8u5ogsfHRrz9cGuaUkdu7ONoXx0NOHNQ93tppEAFi.0nhMI89/G"
+ },
+ {
+  "id": 2,
+  "name": "teste",
+  "lastName": "teste",
+  "email": "teste@teste.com",
+  "password": "$2b$10$gWUCKT6dZTVypPgSdIlcVOcGKCzuAMrTkkwnKYg3bsFSz9cO83Uum"
  }
 ]

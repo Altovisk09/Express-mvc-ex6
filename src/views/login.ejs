@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercado CRUD</title>
     <link rel="stylesheet" href="/stylesheets/login.css">
 </head>
+
 <body>
     <%-include('./partials/navbar')%>
-    <main>
-        <section>
-            <form action="/login" method="post">
-                <div class="info">
-                <label for="email">Email:</label>
-                <input type="text" name="email" id="email">
-                <label for="password">Senha:</label>
-                <input type="password" name="password" id="password">
-                </div>
-                <button type="submit">Login</button>
-            </form>
-        </section>
-    </main>
-    <%-include('./partials/footer')%>
+        <main>
+            <section>
+                <form action="/login" method="post">
+                    <div>
+                        <div class="info">
+                            <label for="email">Email:</label>
+                            <input type="text" name="email" id="email">
+                            <label for="password">Senha:</label>
+                            <input type="password" name="password" id="password">
+                        </div>
+                        <input type="checkbox" name="remember_user" id="remember_user">
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+            </section>
+        </main>
+        <%-include('./partials/footer')%>
 </body>
+
 </html>
