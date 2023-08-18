@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
+
 // Importação do seu middleware
 const sessionValidation = require('./middlewares/authLog');
 

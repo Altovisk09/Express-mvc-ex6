@@ -3,17 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mercado CRUD</title>
+    <title>Perfil do Usuário</title>
     <link rel="stylesheet" href="/stylesheets/navFooter.css">
-    <link rel="stylesheet" href="/stylesheets/login.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
 </head>
 <body>
     <%-include('./partials/navbar')%>
     <main>
         <section>
-            <h1></h1>
+            <div class="userInfo">
+                <h2>Seus Dados</h2>
+                <div id="userDataDisplay">
+                    <img src="/images/avatars/<%=userValid.avatar%>" width="150px" height="150px" alt="img">
+                    <p><strong>Nome:</strong> <%=userValid.name%></p>
+                    <p><strong>Email:</strong> <%=userValid.email%></p>
+                    <p><strong>Senha:</strong> ********</p>
+                    
+                </div>
+                <div id="userDataEdit" style="display: none;">
+                    <form action="/profile/update" method="POST" enctype="multipart/form-data">
+                        <div>
+                            <label for="name">Nome:</label>
+                            <input type="text" name="name" id="name" value="<%=userValid.name%>">
+                        </div>
+                        <div>
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" id="email" value="<%=userValid.email%>">
+                        </div>
+                        <div>
+                            <label for="avatar">Avatar:</label>
+                            <input type="file" name="avatar" id="avatar">
+                        </div>
+                        <div>
+                            <label for="currentPassword">Senha Atual:</label>
+                            <input type="password" name="currentPassword" id="currentPassword">
+                        </div>
+                        <div>
+                            <label for="newPassword">Nova Senha:</label>
+                            <input type="password" name="newPassword" id="newPassword">
+                        </div>
+                        <div>
+                            <label for="confirmPassword">Confirmar Nova Senha:</label>
+                            <input type="password" name="confirmPassword" id="confirmPassword">
+                        </div>
+                        <button type="submit">Salvar Alterações</button>
+                    </form>
+                </div>
+                <button id="editButton">Editar Dados</button>
+            </div>
         </section>
     </main>
     <%-include('./partials/footer')%>
+    <script>
+        const userDataDisplay = document.getElementById('userDataDisplay');
+        const userDataEdit = document.getElementById('userDataEdit');
+        const editButton = document.getElementById('editButton');
+
+        editButton.addEventListener('click', () => {
+            userDataDisplay.style.display = 'none';
+            userDataEdit.style.display = 'block';
+        });
+    </script>
 </body>
 </html>

@@ -15,7 +15,7 @@ function sessionValidation(req, res, next) {
         }
     } else {
         if(userFromSession){
-            let userValid = userFromSession;
+            let userValid = Users.findUserByfield('email', userFromSession);
             res.locals.isLogged = true;
             res.locals.userValid = userValid;
         }else{

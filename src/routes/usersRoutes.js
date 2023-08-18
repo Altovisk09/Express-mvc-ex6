@@ -15,6 +15,7 @@ router.post('/register', upload.single('avatar'),usersController.registerProcess
 
 router.get('/profile', notLogged, usersController.profile);
 
+router.get('/logout', usersController.logout);
 
 
 module.exports=router; 

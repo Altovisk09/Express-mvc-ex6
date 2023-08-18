@@ -4,6 +4,6 @@
     box-sizing: border-box;
 }
 
-body{
-    height: 90vh;
+.body{
+    display: flex;
 }
