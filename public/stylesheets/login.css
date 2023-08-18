@@ -1,5 +1,62 @@
 *{
+    margin:0;
     padding: 0;
-    margin: 0;
     box-sizing: border-box;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 93.5vh;
+}
+
+form{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    padding: 3rem;
+    border: 1px solid rgba(0, 0, 0, 0.153);
+}
+form h2{
+    margin-top: 2.5rem;
+    margin-bottom: 3rem;
+}
+.decoration hr {
+    margin-bottom: 6rem;
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.14), transparent); /* Troque "blue" pela cor desejada */
+}
+
+
+form button{
+    height: 5rem;
+    width: 20rem;
+    font-size: 3rem;
+    background-color: rgb(54, 27, 229);
+    border-color: #FFF;
+    color: #FFF;
+}
+.info{
+display: flex;
+flex-direction: column;
+}
+.info input{
+    padding-left: 0.5rem;
+    font-size: 3rem;
+    width: 50rem;
+    height: 4rem;
+    margin-bottom: 0.5rem;
+    background-color: #e8e8e8;
+    border-color: rgba(0, 0, 0, 0.285);
+    border-style: none;
+}
+.info input:focus{
+    box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.301);
+    outline: none;
+}
+
+.info-remember{
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
 }

@@ -14,9 +14,7 @@ const usersController = {
             if (!req.body) {
                 throw new Error('Todos os campos precisam ser preenchidos.');
             }
-    
-            
-    
+
             if (!req.body.name) {
                 errors.name = new Error('É necessário preencher o seu nome.');
             }
@@ -45,9 +43,11 @@ const usersController = {
             }
         } catch(err) {
             console.log();
-            res.render('register', {});
+            res.render('register', {
+                Error: err.message,
+                oldData: req.body
+            });
         }
-        console.log()
     },    
     login:(req, res)=>{
         res.render('login');
@@ -76,7 +76,6 @@ const usersController = {
                 throw new Error('As informações inseridas são inválidas');
             }
         } catch (error) {
-            console.log(error.message);
             res.render('login', {
                 errors: error.message,
                 oldData: req.body

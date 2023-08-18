@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercado CRUD</title>
+    <link rel="stylesheet" href="/stylesheets/navFooter.css">
     <link rel="stylesheet" href="/stylesheets/login.css">
 </head>
 
@@ -13,14 +14,23 @@
         <main>
             <section>
                 <form action="/login" method="post">
-                    <div>
-                        <div class="info">
+                    <div class="decoration">
+                    <h2>Formulário de login</h2>
+                    <hr>
+                </div>
+                    <div class="info-geral">
+                        <div>
+                            <div class="info">
                             <label for="email">Email:</label>
                             <input type="text" name="email" id="email">
                             <label for="password">Senha:</label>
                             <input type="password" name="password" id="password">
-                        </div>
-                        <input type="checkbox" name="remember_user" id="remember_user">
+                            </div>
+                            <div class="info-remember">
+                                <input type="checkbox" name="remember_user" id="remember_user">
+                                <label for="remember_user">Lembrar de mim</label>
+                            </div>
+                            </div>
                     </div>
                     <button type="submit">Login</button>
                 </form>

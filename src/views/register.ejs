@@ -5,32 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercado CRUD</title>
-    <link rel="stylesheet" href="/stylesheets/login.css">
+    <link rel="stylesheet" href="/stylesheets/navFooter.css">
+    <link rel="stylesheet" href="/stylesheets/register.css">
 </head>
 
 <body>
     <%-include('./partials/navbar')%>
         <main>
             <section>
-                <form action="/register" method="post">
+                <form action="/register" method="post" enctype="multipart/form-data">
+                    <div class="decoration">
+                        <h2>Formulário de cadastro</h2>
+                        <hr>
+                    </div>
                     <div class="name">
-                        <label for="name">Nome:</label>
+                        <label for="name"><strong>Nome:</strong></label>
                         <input type="text" name="name" id="name">
 
-                        <label for="lastName">Sobrenome:</label>
+                        <label for="lastName"><strong>Sobrenome:</strong></label>
                         <input type="text" name="lastName" id="lastName">
                     </div>
-                    <div class="info">
-                        <label for="email">Email:</label>
-                        <input type="text" name="email" id="email" placeholder="Insira seu email">
+                    <div class="name">
+                        <label for="email"><strong>Email:</strong></label>
+                        <input type="text" name="email" id="email" >
 
-                        <label for="password">Senha:</label>
-                        <input type="password" name="password" id="password" placeholder="Insira sua senha">
+                        <label for="password"><strong>Senha:</strong></label>
+                        <input type="password" name="password" id="password">
                     </div>
-                    <!-- <div>
-                        <label for="avatar">Avatar:</label>
+                    <div class="name">
+                        <label for="avatar"><strong>Avatar:</strong></label>
                         <input type="file" name="avatar" id="avatar">
-                    </div> -->
+                    </div> 
                     <button type="submit">Cadastrar</button>
                 </form>
             </section>

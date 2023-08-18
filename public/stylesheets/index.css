@@ -3,3 +3,11 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:94vh;
+    background-image: url('https://i.pinimg.com/originals/b4/e3/71/b4e371619042d1e80918d09904e90f7d.gif');
+}

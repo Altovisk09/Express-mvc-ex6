@@ -22,7 +22,7 @@ const Users = {
             id: this.generateId(),
             ...req.body,
             password: bcrypt.hashSync(req.body.password, 10), // Hash da senha
-            // avatar: req.file
+            avatar: req.file.filename
         };
         allUsers.push(newUser);
         fs.writeFileSync(this.filename, JSON.stringify(allUsers, null, " "));

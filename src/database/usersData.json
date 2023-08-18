@@ -12,5 +12,13 @@
   "lastName": "teste",
   "email": "teste@teste.com",
   "password": "$2b$10$gWUCKT6dZTVypPgSdIlcVOcGKCzuAMrTkkwnKYg3bsFSz9cO83Uum"
+ },
+ {
+  "id": 3,
+  "name": "Eric",
+  "lastName": "Teste",
+  "email": "Eric@teste.com",
+  "password": "$2b$10$2dv9.QZpmh26baaHdjeojeayfaQXDbel5l3mJ5AeSKM2tfluW0flO",
+  "avatar": "image1692321568252.png"
  }
 ]
