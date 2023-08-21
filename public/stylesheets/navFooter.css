@@ -19,7 +19,7 @@ body {
 header{
     background-color: rgb(12, 12, 110);  
 }
-ul{
+.list{
     display: flex;
     align-items: center;
     height: 5rem;
@@ -37,10 +37,10 @@ ul{
 .cadUser a{
     margin-right: 2rem;
 }
-ul a {
+.list a {
     color: #FFF;
 }
-ul a :hover{
+.list a :hover{
     font-size: 3rem;
 }
 footer{

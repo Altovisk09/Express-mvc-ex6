@@ -1,68 +1,225 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil do Usuário</title>
-    <link rel="stylesheet" href="/stylesheets/navFooter.css">
+    <link rel="stylesheet" href="/stylesheets/navFooter.css"> 
     <link rel="stylesheet" href="/stylesheets/profile.css">
 </head>
+
 <body>
     <%-include('./partials/navbar')%>
-    <main>
-        <section>
-            <div class="userInfo">
-                <h2>Seus Dados</h2>
-                <div id="userDataDisplay">
-                    <img src="/images/avatars/<%=userValid.avatar%>" width="150px" height="150px" alt="img">
-                    <p><strong>Nome:</strong> <%=userValid.name%></p>
-                    <p><strong>Email:</strong> <%=userValid.email%></p>
-                    <p><strong>Senha:</strong> ********</p>
-                    
-                </div>
-                <div id="userDataEdit" style="display: none;">
-                    <form action="/profile/update" method="POST" enctype="multipart/form-data">
-                        <div>
-                            <label for="name">Nome:</label>
-                            <input type="text" name="name" id="name" value="<%=userValid.name%>">
+       
+    <div class="main">
+            <aside class="menu">
+                <ul class="listMenu">
+                    <a href="#"id="config-geral" >
+                        <li class="first">Configurações de conta</li>
+                    </a>
+                    <a href="#" id="config-senha">
+                        <li >Senha e segurança</li>
+                    </a>
+                    <a href="#">
+                        <li>Informações pessoais</li>
+                    </a>
+                    <a href="#">
+                        <li>Preferências de notificação</li>
+                    </a>
+                    <a href="#">
+                        <li>Configurações de privacidade</li>
+                    </a>
+                    <a href="#">
+                        <li class="last">Vincular conta</li>
+                    </a>
+                </ul>
+            </aside>
+            <main>
+                <div id="userConfigDisplay">
+                <section>
+                    <div class="userInfo">
+                        <h2>Seus Dados</h2>
+                        <p class="subtitle">Gerencie os detalhes de sua conta.</p>
+                            <div class="avatar">
+                                <p>Avatar:</p>
+                                <img src="/images/avatars/<%=userValid.avatar%>" width="150px" height="150px" alt="img">
+                                <p class="obs">obs: Clique na foto caso deseje altera-la</p>
+                            </div>
+                            <div class="name">
+                                <div class="normalInfo">
+                                    <p><strong>Nome:</strong></p>
+                                    <p>
+                                        <%=userValid.name%>
+                                    </p>
+                                </div>
+                                <div class="normalInfo">
+                                    <p><strong>Sobrenome:</strong></p>
+                                    <p>
+                                        <%=userValid.lastName%>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <div class="normalInfo">
+                                    <p><strong>Email:</strong></p>
+                                    <p>     
+                                        <%=userValid.email%>
+                                    </p>
+                                </div>
+                                <div class="normalInfo">
+                                    <p><strong>Senha:</strong></p>
+                                    <p> **************</p>
+                                </div>
+                            </div>
+                        <button class="btn" id="openModalButton">Editar dados</button>
+                        <div id="myModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <h2>Editar Dados</h2>
+                                <form action="/profile/update" method="post" id="modal">
+                                    <div class="modalInfo">
+                                        <div class="modalInput">
+                                    <label for="lastname">Nome:</label>
+                                    <input type="text" id="input1" name="name">
+                                </div>
+                                <div class="modalInput">
+                                    <label for="lastname">Sobrenome:</label>
+                                    <input type="text" id="lastname" name="lastname" >
+                                </div>
+                            </div>
+                            <div class="modalInfo">
+                                <div class="modalInput">
+                                    <label for="email">Email:</label>
+                                    <input type="text" id="email" name="email" >
+                                </div>
+                                <div class="modalInput1">
+                                    <label for="email">Email:</label>
+                                    <input type="text" id="email" name="email" >
+                                </div>
+                                </div>
+                                <div class="btnModal">
+                                    <button type='submit' class="btn confirm-button" id="confirmButton">Confirmar</button>
+                                    <button type="button" class="btn" id="cancelButton">Cancelar</button>  
+                                </div>
+                                </form>
+                            </div>
                         </div>
-                        <div>
-                            <label for="email">Email:</label>
-                            <input type="email" name="email" id="email" value="<%=userValid.email%>">
-                        </div>
-                        <div>
-                            <label for="avatar">Avatar:</label>
-                            <input type="file" name="avatar" id="avatar">
-                        </div>
-                        <div>
-                            <label for="currentPassword">Senha Atual:</label>
-                            <input type="password" name="currentPassword" id="currentPassword">
-                        </div>
-                        <div>
-                            <label for="newPassword">Nova Senha:</label>
-                            <input type="password" name="newPassword" id="newPassword">
-                        </div>
-                        <div>
-                            <label for="confirmPassword">Confirmar Nova Senha:</label>
-                            <input type="password" name="confirmPassword" id="confirmPassword">
-                        </div>
-                        <button type="submit">Salvar Alterações</button>
-                    </form>
-                </div>
-                <button id="editButton">Editar Dados</button>
-            </div>
-        </section>
-    </main>
-    <%-include('./partials/footer')%>
-    <script>
-        const userDataDisplay = document.getElementById('userDataDisplay');
-        const userDataEdit = document.getElementById('userDataEdit');
-        const editButton = document.getElementById('editButton');
+                    </div>
+                </section>
+                <section>
+                    <div class="userSettings">
+                        <h2 class="title" >Configurações de Conta</h2>
+                        <p class="subtitle">Ajuste suas preferências de conta conforme necessário.</p>
 
-        editButton.addEventListener('click', () => {
-            userDataDisplay.style.display = 'none';
-            userDataEdit.style.display = 'block';
-        });
-    </script>
+                        <form>
+                            <div class="setting">
+                                <label for="notification">Notificações por Email:</label>
+                                <input type="checkbox" name="notification" id="notification">
+                            </div>
+
+                            <div class="setting">
+                                <label for="language">Idioma Preferido:</label>
+                                <select name="language" id="language">
+                                    <option value="en">Inglês</option>
+                                    <option value="es">Espanhol</option>
+                                    <option value="pt">Português</option>
+                                </select>
+                            </div>
+
+                            <div class="setting">
+                                <label for="theme">Tema:</label>
+                                <input type="radio" name="theme" id="lightTheme" value="light">
+                                <label for="lightTheme">Claro</label>
+                                <input type="radio" name="theme" id="darkTheme" value="dark">
+                                <label for="darkTheme">Escuro</label>
+                            </div>
+
+                            <div class="setting">
+                                <label  for="privacy">Privacidade:</label>
+                                <input  type="radio" name="privacy" id="public" value="public">
+                                <label  for="public">Público</label>
+                                <input  class="subconfig" type="radio" name="privacy" id="private" value="private">
+                                <label  for="private">Privado</label>
+                            </div>
+                        </form>
+                        <button class="btn">Salvar Configurações</button>
+                    </div>
+                </section>
+                <section>
+                    <div class="userDetails">
+                        <h2 class="title">Detalhes do Usuário</h2>
+                        <p class="subtitle">Visualize e edite informações detalhadas da sua conta.</p>
+
+                        <div class="userAddress">
+                            <h3 class="subtitle">Endereço</h3>
+                            <div class="name">
+                                <div class="normalInfo">
+                                    <p><strong>Endereço:</strong></p>
+                                    <p>123 Rua Principal</p>
+                                </div>
+                                <div class="normalInfo">
+                                    <p><strong>Cidade:</strong></p>
+                                    <p>Cidade Exemplo</p>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <div class="normalInfo">
+                                    <p><strong>Estado:</strong></p>
+                                    <p>Estado Exemplo</p>
+                                </div>
+                                <div class="normalInfo">
+                                    <p><strong>CEP:</strong></p>
+                                    <p>12345-678</p>
+                                </div>
+                            </div>
+                            <button class="btn" type="#">Salvar Configurações</button>
+                        </div>
+                        <div class="userContact">
+                            <h3 class="title">Contato</h3>
+                            <p class="subtitle">Informações de Contato</p>
+                            <div class="name">
+                                <div class="normalInfo">
+                                    <p><strong>Email de recuperação:</strong></p>
+                                    <p>****@gm***.com</p>
+                                </div>
+                                <div class="normalInfo">
+                                    <p><strong>Telefone:</strong></p>
+                                    <p>(123) 456-7890</p>
+                                </div>
+                             </div>
+                             <button class="btn" type="#">Salvar Configurações</button>
+                            </div>
+                    </div>
+                </div>
+                </section>
+                <div id="userPassDisplay">
+                    <section>
+                        <h2 class="title">Senha e Segurança</h2>
+                        <p class="subtitle">Altere sua senha para manter sua conta segura.</p>
+                        <form action="/profile/update-password" method="POST" id="passInput">
+                            <div class="passInput">
+                                <label for="currentPassword">Senha Atual:</label>
+                                <input type="password" name="currentPassword" id="currentPassword">
+                            </div>
+                            <div class="passInput">
+                                <label for="newPassword">Nova Senha:</label>
+                                <input type="password" name="newPassword" id="newPassword">
+                            </div>
+                            <div class="passInput">
+                                <label for="confirmNewPassword">Confirmar Nova Senha:</label>
+                                <input type="password" name="confirmNewPassword" id="confirmNewPassword">
+                            </div>
+                            <button class="btn" type="submit">Alterar Senha</button>
+                        </form>
+                    </section>
+                </div>
+            </div>
+            </main>
+            <script src="/javascripts/modal.js"></script>
+        <script src="/javascripts/profileDisplay.js"></script>
+        <script src="/javascripts/menuAnimation.js"></script>
+        <%-include('./partials/footer')%>
 </body>
+
 </html>

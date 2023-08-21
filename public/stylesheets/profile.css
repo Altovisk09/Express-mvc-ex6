@@ -4,6 +4,177 @@
     box-sizing: border-box;
 }
 
-.body{
+.main{
+   display: flex;
+   background-color: #dcdcdc;
+}
+.menu{
+    width: 25vw;
+    margin: 3rem;
+   
+}
+.listMenu a li{
+    font-weight: bold;
+    color: black;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-inline: 1.5rem;
+    background-color: #FFF;
+}
+.listMenu a li:hover{
+background-color: #f7f7f7;
+}
+.listMenu a li.active{
+    background-color: #c1c1c1;
+    }
+.first {
+    border-radius: 15px 15px 0 0;
+}
+.last {
+    border-radius: 0 0 15px 15px;
+}
+main{
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-inline: 1.5rem;
+    margin: 3rem;
+    background-color: #FFF;
+    border-radius: 15px;
+}
+.name{
     display: flex;
 }
+.avatar{
+    margin-top: 2rem;
+}
+.normalInfo p strong{
+font-size: 0.9rem;
+}
+.normalInfo{
+   background-color: #dcdcdc;
+   padding-left: 1rem;
+   padding-bottom: 1rem;
+   width: 30rem;
+   margin-bottom: 1rem;
+   margin-inline: 2rem;
+   border-radius: 10px;
+}
+.avatar{
+margin-bottom: 2rem;
+}
+.obs{
+    font-size:1rem;
+}
+.title{
+margin-top: 2rem;
+}
+.subtitle{
+margin-bottom: 1rem;
+}
+.subconfig{
+    margin-bottom: 1.8rem;
+}
+.btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 2rem;
+    border: 1px solid #888;
+    width: 40%;
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-content h2{
+    margin-bottom: 2rem;
+}
+
+.confirm-button {
+    margin-top: 1rem;
+}
+
+.modalInfo{
+    display: flex;
+    justify-content: space-around;
+    
+}
+.modalInput{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+.modalInput1{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    visibility: hidden;
+}
+#modal input{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-inline: 1rem;
+    border: 0.5px solid black;
+    border-radius: 15px;
+    outline: none;
+    font-size: 1.6rem;
+    width: 25rem
+}
+.btnModal{
+    margin-top: 2rem;
+    margin-left: 30rem;
+}
+.passInput{
+    display: flex;
+    flex-direction: column;
+    
+    margin-bottom: 2rem;
+}
+#passInput{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#passInput button{
+    margin-right: 30rem;
+}
+#passInput input{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-inline: 1rem;
+    border: 0.5px solid black;
+    border-radius: 15px;
+    outline: none;
+    font-size: 2rem;
+}
+
+
