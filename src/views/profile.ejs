@@ -79,23 +79,40 @@
                                 <h2>Editar Dados</h2>
                                 <form action="/profile/update" method="post" id="modal">
                                     <div class="modalInfo">
+                                        <div id="error">
                                         <div class="modalInput">
-                                    <label for="lastname">Nome:</label>
-                                    <input type="text" id="input1" name="name">
+                                    <label for="name">Nome:</label>
+                                    <input type="text" id="name" name="name" placeholder="Insira seu nome">
                                 </div>
+                                <% if (locals.errors && errors.name) { %>
+                                    <p class="error"><%= errors.name.message %></p>
+                                    <% } %>
+                                </div>
+                                <div id="error">
                                 <div class="modalInput">
                                     <label for="lastname">Sobrenome:</label>
-                                    <input type="text" id="lastname" name="lastname" >
+                                    <input type="text" id="lastname" name="lastname" placeholder="Insira seu sobrenome">
+                                </div>
+                                <% if (locals.errors && errors.lastname) { %>
+                                    <p class="error"><%= errors.lastname.message %></p>
+                                    <% } %>
                                 </div>
                             </div>
                             <div class="modalInfo">
+                                <div id="error">
                                 <div class="modalInput">
+                                    <label for="email">Email:</label>
+                                    <input type="text" id="email" name="email" placeholder="Insira seu email" >
+                                </div>
+                                <% if (locals.errors && errors.email) { %>
+                                    <p class="error"><%= errors.email.message %></p>
+                                    <% } %>
+                                </div>
+                                <div class="modalInput1">
+                                    <div id="error">
                                     <label for="email">Email:</label>
                                     <input type="text" id="email" name="email" >
                                 </div>
-                                <div class="modalInput1">
-                                    <label for="email">Email:</label>
-                                    <input type="text" id="email" name="email" >
                                 </div>
                                 </div>
                                 <div class="btnModal">
@@ -199,16 +216,31 @@
                         <p class="subtitle">Altere sua senha para manter sua conta segura.</p>
                         <form action="/profile/update-password" method="POST" id="passInput">
                             <div class="passInput">
+                                <div id="error">
                                 <label for="currentPassword">Senha Atual:</label>
-                                <input type="password" name="currentPassword" id="currentPassword">
+                                <input type="password" name="currentPassword" id="currentPassword" placeholder="Insira sua senha atual">
+                            <% if (locals.erros && errors.currentPassword){ %>
+                                <p class="error"><%=errors.currentPassword.msg%></p>
+                            <% } %>
+                            </div>
                             </div>
                             <div class="passInput">
+                                <div id="error">
                                 <label for="newPassword">Nova Senha:</label>
-                                <input type="password" name="newPassword" id="newPassword">
+                                <input type="password" name="newPassword" id="newPassword" placeholder="Insira sua nova senha">
+                                <% if (locals.erros && errors.newPassword) { %>
+                                    <p class="error"><%= errors.newPassword.msg %></p>
+                                <% } %>
+                            </div>
                             </div>
                             <div class="passInput">
+                                <div id="error">
                                 <label for="confirmNewPassword">Confirmar Nova Senha:</label>
-                                <input type="password" name="confirmNewPassword" id="confirmNewPassword">
+                                <input type="password" name="confirmNewPassword" id="confirmNewPassword" placeholder="Confirme sua nova senha">
+                                <% if (locals.erros && errors.confirmNewPassword) { %>
+                                    <p class="error"><%= errors.confirmNewPassword.msg %></p>
+                                <% } %>
+                            </div>
                             </div>
                             <button class="btn" type="submit">Alterar Senha</button>
                         </form>
@@ -216,7 +248,7 @@
                 </div>
             </div>
             </main>
-            <script src="/javascripts/modal.js"></script>
+        <script src="/javascripts/modal.js"></script>
         <script src="/javascripts/profileDisplay.js"></script>
         <script src="/javascripts/menuAnimation.js"></script>
         <%-include('./partials/footer')%>

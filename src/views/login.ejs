@@ -11,31 +11,47 @@
 
 <body>
     <%-include('./partials/navbar')%>
-        <main>
-            <section>
-                <form action="/login" method="post">
-                    <div class="decoration">
+    <main>
+        <section>
+            <form action="/login" method="post">
+                <div class="decoration">
                     <h2>Formulário de login</h2>
                     <hr>
                 </div>
-                    <div class="info-geral">
-                        <div>
-                            <div class="info">
+                <div class="info-geral">
+                    <div>
+                        <div class="info">
+                            <div id="error">
                             <label for="email">Email:</label>
                             <input type="text" name="email" id="email">
+                                <% if (locals.errors && errors.email) { %>
+                                    <p class="error"><%= errors.email.message %></p>
+                                <% } %>
+                            </div>
+                            <div id="error">
                             <label for="password">Senha:</label>
                             <input type="password" name="password" id="password">
+                                <% if (locals.errors && errors.password) { %>
+                                    <p class="error"><%= errors.password.message %></p>
+                                <% } %>
                             </div>
-                            <div class="info-remember">
-                                <input type="checkbox" name="remember_user" id="remember_user">
-                                <label for="remember_user">Lembrar de mim</label>
-                            </div>
-                            </div>
+                        </div>
+                        <div class="info-remember">
+                            <input type="checkbox" name="remember_user" id="remember_user">
+                            <label for="remember_user">Lembrar de mim</label>
+                        </div>
                     </div>
-                    <button type="submit">Login</button>
-                </form>
-            </section>
-        </main>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+                <div id="errorModal" class="modal">
+                    <div class="modal-content">
+                        <p><%= errors.geral.message %></p>
+                        <button class="btn" id="okButton">OK</button>
+                    </div>
+                </div>
+        </section>
+    </main>
         <%-include('./partials/footer')%>
 </body>
 

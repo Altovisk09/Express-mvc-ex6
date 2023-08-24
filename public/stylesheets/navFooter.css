@@ -49,4 +49,12 @@ footer{
     text-align: center;
     background-color: rgb(12, 12, 110);
 }
-
+#error{
+    display: flex;
+    flex-direction: column;
+}
+.error{
+    color: rgb(228, 18, 18);
+    font-weight: 500;
+    font-size: 1.4rem;
+}

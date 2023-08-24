@@ -11,36 +11,58 @@
 
 <body>
     <%-include('./partials/navbar')%>
-        <main>
-            <section>
-                <form action="/register" method="post" enctype="multipart/form-data">
-                    <div class="decoration">
-                        <h2>Formulário de cadastro</h2>
-                        <hr>
+    <main>
+        <section>
+            <form action="/register" method="post" enctype="multipart/form-data">
+                <div class="decoration">
+                    <h2>Formulário de cadastro</h2>
+                    <hr>
+                </div>
+                <div class="name">
+                    <label for="name"><strong>Nome:</strong></label>
+                    <input type="text" name="name" id="name" value="<%= locals.oldData ? oldData.name : '' %>">
+                    <div id="error" class="error">
+                        <% if (locals.errors && errors.name) { %>
+                            <p class="error"><%= errors.name.message%></p>
+                        <% } %>
                     </div>
-                    <div class="name">
-                        <label for="name"><strong>Nome:</strong></label>
-                        <input type="text" name="name" id="name">
 
-                        <label for="lastName"><strong>Sobrenome:</strong></label>
-                        <input type="text" name="lastName" id="lastName">
+                    <label for="lastName"><strong>Sobrenome:</strong></label>
+                    <input type="text" name="lastName" id="lastName"  value="<%= locals.oldData ? oldData.lastName : '' %>">
+                    <div id="error" class="error">
+                        <% if (locals.errors && errors.lastName) { %>
+                            <p class="error"><%= errors.lastName.message%></p>
+                        <% } %>
                     </div>
-                    <div class="name">
-                        <label for="email"><strong>Email:</strong></label>
-                        <input type="text" name="email" id="email" >
+                </div>
+                <div class="name">
+                    <label for="email"><strong>Email:</strong></label>
+                    <input type="text" name="email" id="email"  value="<%= locals.oldData ? oldData.email : '' %>">
+                    <div id="error" class="error">
+                        <% if (locals.errors && errors.email) { %>
+                            <p class="error"><%= errors.email.message%></p>
+                        <% } %>
+                    </div>
 
-                        <label for="password"><strong>Senha:</strong></label>
-                        <input type="password" name="password" id="password">
+                    <label for="password"><strong>Senha:</strong></label>
+                    <input type="password" name="password" id="password">
+                    <div id="error" class="error">
                     </div>
-                    <div class="name">
-                        <label for="avatar"><strong>Avatar:</strong></label>
-                        <input type="file" name="avatar" id="avatar">
-                    </div> 
-                    <button type="submit">Cadastrar</button>
-                </form>
-            </section>
-        </main>
-        <%-include('./partials/footer')%>
+                </div>
+                <div class="name">
+                    <label for="avatar"><strong>Avatar:</strong></label>
+                    <input type="file" name="avatar" id="avatar" value="<%= locals.oldFile ? oldFile.filename : '' %>">
+                    <div id="error" class="error">
+                        <% if (locals.errors && errors.avatar) { %>
+                            <p class="error"><%= errors.avatar.message%></p>
+                        <% } %>
+                    </div>
+                </div>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </section>
+    </main>
+    <%-include('./partials/footer')%>
 </body>
 
 </html>
