@@ -76,7 +76,6 @@ const usersController = {
             if (userValidad && bcrypt.compareSync(req.body.password, userValidad.password)) {
                 delete userValidad.password;
                 req.session.user = userValidad;
-                console.log(userValidad)
                 if (req.body.remember_user) {
                     res.cookie('logMail', userValidad.email, { maxAge: 1000 * 60 * 60 });
                 }
@@ -100,46 +99,16 @@ const usersController = {
         res.render('profile');
     },
     editInfo: (req, res) => {
-        try {
-            const userId = req.session.userValidad.id; // Obter o ID do usuário logado
-            const newData = req.body;
+        const userId = req.session.user.id;
+        const newData = req.body;
 
-            const updatedUser = Users.editAccount(userId, newData);
-
-            if (updatedUser) {
-                req.session.userValidad = updatedUser; // Atualizar os dados na sessão
-
-                res.redirect('/profile'); // Redirecionar para a página de perfil após a edição
-            } else {
-                return (alert('Usúario não encontrado'))
-            }
-        } catch (error) {
-            res.render('profile', {
-                errors: error.message
-
-            });
-        }
+       Users.editAccount(userId, newData);
+       res.redirect('/profile')
+       
     },
 
-    editPass: async (req, res) => {
-        try {
-            const userId = req.session.user.id; // Obter o ID do usuário logado
-            const newPassword = req.body.newPassword;
-
-            // Validar a nova senha, se necessário
-
-            const updatedUser = await Users.editPassword(userId, newPassword);
-
-            if (updatedUser) {
-                res.redirect('/profile'); // Redirecionar para a página de perfil após a edição
-            } else {
-                throw new Error('Usuário não encontrado');
-            }
-        } catch (error) {
-            res.render('profile', {
-                errors: error.message
-            });
-        }
+    editPass: (req, res) => {
+        
     },
     logout: (req, res) => {
         req.session.destroy();

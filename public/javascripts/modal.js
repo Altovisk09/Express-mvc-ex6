@@ -16,12 +16,6 @@ cancelButton.addEventListener("click", () => {
     closeModal();
 });
 
-window.addEventListener("click", (event) => {
-    if (event.target === modal) {
-        closeModal();
-    }
-});
-
 function closeModal() {
     modal.style.display = "none";
     document.body.style.overflow = "auto"; 

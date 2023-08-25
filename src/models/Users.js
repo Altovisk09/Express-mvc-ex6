@@ -44,21 +44,15 @@ const Users = {
     },
     editAccount: function(userId, newData) {
         let allUsers = this.getData();
-        let userToUpdate = allUsers.find(user => user.id === userId);
-    
-        if (userToUpdate) {
-            // Atualizar os campos desejados (nome, sobrenome, email)
-            userToUpdate.name = newData.name;
-            userToUpdate.lastName = newData.lastName;
-            userToUpdate.email = newData.email;
-    
-            this.saveData(allUsers); // Chamar o método para salvar os dados
-            console.log(userToUpdate)
-            return userToUpdate;
-        } else {
-            return null; // Usuário não encontrado
-        }
-    },
+        let user = allUsers.find(user => user.id === userId);
+        
+        user.name = newData.name;
+        user.lastName = newData.lastName;
+        user.email = newData.email;
+        this.saveData(allUsers);
+
+        return user
+    },    
     editPassword: function(userId, newPassword) {
         let allUsers = this.getData();
         let userToUpdate = allUsers.find(user => user.id === userId);

@@ -34,7 +34,7 @@ background-color: #f7f7f7;
 .last {
     border-radius: 0 0 15px 15px;
 }
-main{
+#content-main{
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     padding-inline: 1.5rem;
@@ -101,10 +101,10 @@ margin-bottom: 1rem;
 
 .modal-content {
     background-color: white;
-    margin: 15% auto;
+    margin: 10% auto;
     padding: 2rem;
     border: 1px solid #888;
-    width: 40%;
+    width: 50%;
 }
 
 .close {
@@ -152,7 +152,6 @@ margin-bottom: 1rem;
 }
 .btnModal{
     margin-top: 2rem;
-    margin-left: 30rem;
 }
 .passInput{
     display: flex;
@@ -184,8 +183,5 @@ margin-bottom: 1rem;
 .error{
     color: rgb(173, 24, 24);
     font-size: 0.7rem;
-}
-#userPassDisplay{
-    margin-bottom: 10vh;
 }
 

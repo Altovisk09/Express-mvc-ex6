@@ -16,7 +16,7 @@ router.post('/register', upload.single('avatar'),usersController.registerProcess
 router.get('/profile', notLogged, usersController.profile);
 
 router.post('/profile/update', notLogged, usersController.editInfo);
-router.post('/profile/update-password', notLogged, usersController.editPass);
+router.post('/profile/update-pass', notLogged, usersController.editPass);
 
 router.get('/logout', usersController.logout);
 

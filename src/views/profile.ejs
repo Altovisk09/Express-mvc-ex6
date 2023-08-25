@@ -36,6 +36,7 @@
                 </ul>
             </aside>
             <main>
+                <div id ="content-main">
                 <div id="userConfigDisplay">
                 <section>
                     <div class="userInfo">
@@ -43,7 +44,7 @@
                         <p class="subtitle">Gerencie os detalhes de sua conta.</p>
                             <div class="avatar">
                                 <p>Avatar:</p>
-                                <img src="/images/avatars/<%=userValid.avatar%>" width="150px" height="150px" alt="img">
+                                <img src="/images/avatars/<%=locals.userValid ? userValid.avatar : '' %>" width="150px" height="150px" alt="img">
                                 <p class="obs">obs: Clique na foto caso deseje altera-la</p>
                             </div>
                             <div class="name">
@@ -77,12 +78,12 @@
                             <div class="modal-content">
                                 <span class="close">&times;</span>
                                 <h2>Editar Dados</h2>
-                                <form action="/profile/update" method="post" id="modal">
+                                <form action="/profile/update" method="POST" id="modal">
                                     <div class="modalInfo">
                                         <div id="error">
                                         <div class="modalInput">
                                     <label for="name">Nome:</label>
-                                    <input type="text" id="name" name="name" placeholder="Insira seu nome">
+                                    <input type="text" id="name" name="name" value="<%=userValid.name%>" placeholder="Insira seu nome">
                                 </div>
                                 <% if (locals.errors && errors.name) { %>
                                     <p class="error"><%= errors.name.message %></p>
@@ -90,28 +91,28 @@
                                 </div>
                                 <div id="error">
                                 <div class="modalInput">
-                                    <label for="lastname">Sobrenome:</label>
-                                    <input type="text" id="lastname" name="lastname" placeholder="Insira seu sobrenome">
+                                    <label for="lastName">Sobrenome:</label>
+                                    <input type="text" id="lastName" name="lastName" value="<%=userValid.lastName%>" placeholder="Insira seu sobrenome">
                                 </div>
-                                <% if (locals.errors && errors.lastname) { %>
-                                    <p class="error"><%= errors.lastname.message %></p>
+                                <% if (locals.errors && errors.lastName) { %>
+                                    <p class="error"><%= errors.lastName.message %></p>
                                     <% } %>
                                 </div>
                             </div>
                             <div class="modalInfo">
                                 <div id="error">
-                                <div class="modalInput">
-                                    <label for="email">Email:</label>
-                                    <input type="text" id="email" name="email" placeholder="Insira seu email" >
+                                <div class="modalInput1">
+                                    <label for="fakeEmail">Email:</label>
+                                    <input type="text" id="fakeEmail" name="fakeEmail" disabled >
                                 </div>
                                 <% if (locals.errors && errors.email) { %>
                                     <p class="error"><%= errors.email.message %></p>
                                     <% } %>
                                 </div>
-                                <div class="modalInput1">
+                                <div class="modalInput">
                                     <div id="error">
                                     <label for="email">Email:</label>
-                                    <input type="text" id="email" name="email" >
+                                    <input type="text" id="email" name="email" value="<%=userValid.email%>" placeholder="Insira seu email" >
                                 </div>
                                 </div>
                                 </div>
@@ -247,6 +248,7 @@
                     </section>
                 </div>
             </div>
+        </div>
             </main>
         <script src="/javascripts/modal.js"></script>
         <script src="/javascripts/profileDisplay.js"></script>

@@ -44,15 +44,20 @@
                 </div>
                 <button type="submit">Login</button>
             </form>
+            <% if(locals.errors && !errors.email && !errors.password && errors.geral) { %>
                 <div id="errorModal" class="modal">
                     <div class="modal-content">
                         <p><%= errors.geral.message %></p>
                         <button class="btn" id="okButton">OK</button>
+                        <button class="btn" id="emptyBtn" onclick="window.location.href='/register'">Já tenho cadastro</button>
                     </div>
                 </div>
+            <% } %>
+            
         </section>
     </main>
         <%-include('./partials/footer')%>
+        <script src="/javascripts/modalLogin.js"></script>
 </body>
 
 </html>
