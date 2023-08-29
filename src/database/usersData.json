@@ -4,7 +4,23 @@
   "name": "Eric",
   "lastName": "Elias",
   "email": "eric.elias@example.com",
-  "password": "$2b$10$X4JVJyseL3j.S8V/q6BFquT099JKIdRJoa6pf0ZkRj/PUDWriRw9y",
+  "password": "$2b$10$SvmwRJa8fmpnoBgAODS0IOsHrUNoQsSIlyjCpJ1ciAukPgl1iaVAa",
   "avatar": "image1692661226000.jpg"
+ },
+ {
+  "id": 2,
+  "name": "José ",
+  "lastName": "Teste",
+  "email": "joseteste@example.com",
+  "password": "$2b$10$eaZrCvYLHoBE0BEs78N6Oe0jju9fH2vMgrGROdK3xSmNwmbM3J4jO",
+  "avatar": "image1693245346529.jpg"
+ },
+ {
+  "id": 3,
+  "name": "Sueli",
+  "lastName": "Teste",
+  "email": "sueliteste@example.com",
+  "password": "$2b$10$f4Sux44BZdhCZ9YNeY2JB.qUtJgkPAsfAU.eO79rh.cbKGbhd9G7S",
+  "avatar": "image1693245430715.jpg"
  }
 ]

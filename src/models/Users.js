@@ -53,17 +53,17 @@ const Users = {
 
         return user
     },    
-    editPassword: function(userId, newPassword) {
+    editPassword: function(userId, currentPassword, newPassword) {
         let allUsers = this.getData();
         let userToUpdate = allUsers.find(user => user.id === userId);
     
-        if (userToUpdate && bcrypt.compareSync(newPassword, userToUpdate.password)) {
+        if (userToUpdate && bcrypt.compareSync(currentPassword, userToUpdate.password)) {
            
             userToUpdate.password = bcrypt.hashSync(newPassword, 10);
             this.saveData(allUsers); // Chamar o método para salvar os dados
-            return userToUpdate;
+            return true;
         } else {
-            return alert('Senhas não coincidem') ; 
+            return false
         }
     },
 }

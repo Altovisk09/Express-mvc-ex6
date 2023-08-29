@@ -87,7 +87,7 @@ const usersController = {
                     oldData: req.body
                 });
             }
-            
+
         } catch (errors) {
             res.render('login', {
                 errors: errors,
@@ -99,16 +99,60 @@ const usersController = {
         res.render('profile');
     },
     editInfo: (req, res) => {
-        const userId = req.session.user.id;
-        const newData = req.body;
+        const errors = {};
+        try {
+            const userId = req.session.user.id;
+            const newData = req.body;
 
-       Users.editAccount(userId, newData);
-       res.redirect('/profile')
-       
+            Users.editAccount(userId, newData);
+            res.redirect('/profile')
+        } catch {
+            console.log('tedas')
+        }
+
+
     },
 
     editPass: (req, res) => {
-        
+        const errors = {};
+        const userId = req.session.user.id;
+        const currentPassword = req.body.currentPassword;
+        const newPassword = req.body.newPassword;
+        const confirmNewPass = req.body.confirmNewPassword;
+
+        try {
+            if (currentPassword || newPassword || confirmNewPass) {
+                if (!currentPassword) {
+                    errors.currentPassword = new Error('Insira sua senha atual.')
+
+                } 
+                if (!newPassword) {
+                    errors.newPassword = new Error('Insira a sua nova senha.')
+                }else if(newPassword.length <= 6){
+                    throw new Error('A senha precisa possuir no minímo 6 digítos')
+                }
+                if (!confirmNewPass) {
+                    errors.confirmNewPass = new Error('É necessário confirmar sua nova senha.')
+                }else if(newPassword !== confirmNewPass){
+                    throw new Error('Confirmação de senha incorreta.')
+                }
+                if (Object.keys(errors).length === 0) {
+                    const att = Users.editPassword(userId, currentPassword, newPassword);
+                    if (att) {
+                        res.redirect('/profile');
+                    } 
+                }else {
+                    res.render('profile',{errors: errors});
+                }
+            } else {
+                throw new Error('É necessário preencher todo o formulário.')
+            }
+
+        } catch (err) {
+            res.render('profile', {
+                error: err.message,
+            })
+        }
     },
     logout: (req, res) => {
         req.session.destroy();

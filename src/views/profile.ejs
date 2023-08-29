@@ -215,13 +215,18 @@
                     <section>
                         <h2 class="title">Senha e Segurança</h2>
                         <p class="subtitle">Altere sua senha para manter sua conta segura.</p>
-                        <form action="/profile/update-password" method="POST" id="passInput">
+                        <br>
+                        <% if (locals.error) { %>
+                            <p style="text-align: center; color:rgb(216, 16, 16);"><%= error %></p>
+                            <br>
+                        <% } %>
+                        <form action="/profile/update-pass" method="POST" id="passInput">
                             <div class="passInput">
                                 <div id="error">
                                 <label for="currentPassword">Senha Atual:</label>
                                 <input type="password" name="currentPassword" id="currentPassword" placeholder="Insira sua senha atual">
-                            <% if (locals.erros && errors.currentPassword){ %>
-                                <p class="error"><%=errors.currentPassword.msg%></p>
+                            <% if (locals.errors && errors.currentPassword){ %>
+                                <p class="error"><%= errors.currentPassword.message%></p>
                             <% } %>
                             </div>
                             </div>
@@ -229,8 +234,8 @@
                                 <div id="error">
                                 <label for="newPassword">Nova Senha:</label>
                                 <input type="password" name="newPassword" id="newPassword" placeholder="Insira sua nova senha">
-                                <% if (locals.erros && errors.newPassword) { %>
-                                    <p class="error"><%= errors.newPassword.msg %></p>
+                                <% if (locals.errors && errors.newPassword) { %>
+                                    <p class="error"><%= errors.newPassword.message %></p>
                                 <% } %>
                             </div>
                             </div>
@@ -238,19 +243,20 @@
                                 <div id="error">
                                 <label for="confirmNewPassword">Confirmar Nova Senha:</label>
                                 <input type="password" name="confirmNewPassword" id="confirmNewPassword" placeholder="Confirme sua nova senha">
-                                <% if (locals.erros && errors.confirmNewPassword) { %>
-                                    <p class="error"><%= errors.confirmNewPassword.msg %></p>
+                                <% if (locals.errors && errors.confirmNewPass) { %>
+                                    <p class="error"><%= errors.confirmNewPass.message %></p>
                                 <% } %>
                             </div>
                             </div>
-                            <button class="btn" type="submit">Alterar Senha</button>
+                            <button class="btn" id="passButton" type="submit">Alterar Senha</button>
                         </form>
                     </section>
                 </div>
             </div>
         </div>
             </main>
-        <script src="/javascripts/modal.js"></script>
+        <script src="/javascripts/editModal.js"></script>
+        <script src="/javascripts/errorModal.js"></script>
         <script src="/javascripts/profileDisplay.js"></script>
         <script src="/javascripts/menuAnimation.js"></script>
         <%-include('./partials/footer')%>
