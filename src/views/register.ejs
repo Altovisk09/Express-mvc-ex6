@@ -47,6 +47,9 @@
                     <label for="password"><strong>Senha:</strong></label>
                     <input type="password" name="password" id="password">
                     <div id="error" class="error">
+                        <% if (locals.errors && errors.password) { %>
+                            <p class="error"><%= errors.password.message%></p>
+                        <% } %>
                     </div>
                 </div>
                 <div class="name">

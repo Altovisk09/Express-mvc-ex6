@@ -79,10 +79,10 @@ flex-direction: column;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.7);
 }
-.modal-content {
+.modal-content-login {
     background-color: white;
-    margin: 10% auto;
+    margin: 20% auto;
     padding: 2rem;
     border: 1px solid #888;
-    width: 50%;
+    width: 20%;
 }

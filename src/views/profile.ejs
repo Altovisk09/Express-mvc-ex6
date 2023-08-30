@@ -44,20 +44,41 @@
                         <p class="subtitle">Gerencie os detalhes de sua conta.</p>
                             <div class="avatar">
                                 <p>Avatar:</p>
-                                <img src="/images/avatars/<%=locals.userValid ? userValid.avatar : '' %>" width="150px" height="150px" alt="img">
+                                <img id="avatarImage"   src="/images/avatars/<%=locals.userValid ? userValid.avatar : '' %>" width="150px" height="150px" alt="img">
                                 <p class="obs">obs: Clique na foto caso deseje altera-la</p>
+                            </div>
+                            <div id="avatarModal" class="modal">
+                                <div class="modal-content">
+                                    <span class="close">&times;</span>
+                                    <h2>Trocar Avatar</h2>
+                                    <form action="/profile/update-avatar" method="POST" id="avatarForm" enctype="multipart/form-data">
+                                        <div id="error1">
+                                        <div class="modalInput">
+                                            <label for="newAvatar">Nova Imagem:</label>
+                                            <input type="file" name="newAvatar" id="newAvatar">
+                                        </div>
+                                        <% if (locals.errors && errors.newAvatar) { %>
+                                            <p class="error"><%= errors.newAvatar.message %></p>
+                                            <% } %>
+                                    </div>
+                                        <div class="btnModal">
+                                            <button type="submit" class="btn confirm-button">Trocar</button>
+                                            <button type="button" class="btn" id="cancelAvatarButton">Cancelar</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                             <div class="name">
                                 <div class="normalInfo">
                                     <p><strong>Nome:</strong></p>
                                     <p>
-                                        <%=userValid.name%>
+                                        <%= locals.userValid ? userValid.name : 'fail'%>
                                     </p>
                                 </div>
                                 <div class="normalInfo">
                                     <p><strong>Sobrenome:</strong></p>
                                     <p>
-                                        <%=userValid.lastName%>
+                                        <%=locals.userValid ? userValid.lastName : 'fail'%>
                                     </p>
                                 </div>
                             </div>
@@ -65,7 +86,7 @@
                                 <div class="normalInfo">
                                     <p><strong>Email:</strong></p>
                                     <p>     
-                                        <%=userValid.email%>
+                                        <%=locals.userValid ? userValid.email : 'fail'%>
                                     </p>
                                 </div>
                                 <div class="normalInfo">
@@ -78,12 +99,16 @@
                             <div class="modal-content">
                                 <span class="close">&times;</span>
                                 <h2>Editar Dados</h2>
+                        <% if (locals.error) { %>
+                            <p style="text-align: center; color:rgb(216, 16, 16);"><%= error %></p>
+                            <br>
+                        <% } %>
                                 <form action="/profile/update" method="POST" id="modal">
                                     <div class="modalInfo">
                                         <div id="error">
                                         <div class="modalInput">
                                     <label for="name">Nome:</label>
-                                    <input type="text" id="name" name="name" value="<%=userValid.name%>" placeholder="Insira seu nome">
+                                    <input type="text" id="name" name="name" value="<%=locals.userValid ? userValid.name : 'fail'%>" placeholder="Insira seu nome">
                                 </div>
                                 <% if (locals.errors && errors.name) { %>
                                     <p class="error"><%= errors.name.message %></p>
@@ -92,7 +117,7 @@
                                 <div id="error">
                                 <div class="modalInput">
                                     <label for="lastName">Sobrenome:</label>
-                                    <input type="text" id="lastName" name="lastName" value="<%=userValid.lastName%>" placeholder="Insira seu sobrenome">
+                                    <input type="text" id="lastName" name="lastName" value="<%=locals.userValid ? userValid.lastName : 'fail'%>" placeholder="Insira seu sobrenome">
                                 </div>
                                 <% if (locals.errors && errors.lastName) { %>
                                     <p class="error"><%= errors.lastName.message %></p>
@@ -105,14 +130,17 @@
                                     <label for="fakeEmail">Email:</label>
                                     <input type="text" id="fakeEmail" name="fakeEmail" disabled >
                                 </div>
-                                <% if (locals.errors && errors.email) { %>
-                                    <p class="error"><%= errors.email.message %></p>
+                                <% if (locals.errors && errors.fakeEmail) { %>
+                                    <p class="error"><%= errors.fakeEmail.message %></p>
                                     <% } %>
                                 </div>
                                 <div class="modalInput">
                                     <div id="error">
                                     <label for="email">Email:</label>
-                                    <input type="text" id="email" name="email" value="<%=userValid.email%>" placeholder="Insira seu email" >
+                                    <input type="text" id="email" name="email" value="<%=locals.userValid ? userValid.email : 'fail'%>" placeholder="Insira seu email" >
+                                    <% if (locals.errors && errors.email) { %>
+                                        <p class="error"><%= errors.email.message %></p>
+                                    <% } %>
                                 </div>
                                 </div>
                                 </div>
@@ -222,7 +250,7 @@
                         <% } %>
                         <form action="/profile/update-pass" method="POST" id="passInput">
                             <div class="passInput">
-                                <div id="error">
+                                <div id="error1">
                                 <label for="currentPassword">Senha Atual:</label>
                                 <input type="password" name="currentPassword" id="currentPassword" placeholder="Insira sua senha atual">
                             <% if (locals.errors && errors.currentPassword){ %>
@@ -231,7 +259,7 @@
                             </div>
                             </div>
                             <div class="passInput">
-                                <div id="error">
+                                <div id="error1">
                                 <label for="newPassword">Nova Senha:</label>
                                 <input type="password" name="newPassword" id="newPassword" placeholder="Insira sua nova senha">
                                 <% if (locals.errors && errors.newPassword) { %>
@@ -240,7 +268,7 @@
                             </div>
                             </div>
                             <div class="passInput">
-                                <div id="error">
+                                <div id="error1">
                                 <label for="confirmNewPassword">Confirmar Nova Senha:</label>
                                 <input type="password" name="confirmNewPassword" id="confirmNewPassword" placeholder="Confirme sua nova senha">
                                 <% if (locals.errors && errors.confirmNewPass) { %>

@@ -42,6 +42,26 @@ const Users = {
         let userFound= allUsers.find(user => user[field] === value);
         return userFound;
     },
+    compareEmail: function(sessionEmail, inputEmail){
+        let allUsers = this.getData();
+        let userFound = allUsers.find(user => user.email === sessionEmail);
+    
+        if (userFound && userFound.email === inputEmail) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+    comparePass: function(userId, currentPassword) {
+        let allUsers = this.getData();
+        let userToUpdate = allUsers.find(user => user.id === userId);
+    
+        if (userToUpdate && bcrypt.compareSync(currentPassword, userToUpdate.password)) {
+            return true;
+        } else {
+            return false
+        }
+    },
     editAccount: function(userId, newData) {
         let allUsers = this.getData();
         let user = allUsers.find(user => user.id === userId);
@@ -66,6 +86,19 @@ const Users = {
             return false
         }
     },
+    editAvatar: function(userId, file){
+        let allUsers = this.getData();
+        let fileUser = allUsers.find(user => user.id === userId);
+
+        if(fileUser){
+            
+            fileUser.avatar = file.filename;
+            this.saveData(allUsers); 
+            return true
+        }else{
+            return false
+        }
+    }
 }
 
 module.exports = Users;

@@ -4,7 +4,7 @@
   "name": "Eric",
   "lastName": "Elias",
   "email": "eric.elias@example.com",
-  "password": "$2b$10$SvmwRJa8fmpnoBgAODS0IOsHrUNoQsSIlyjCpJ1ciAukPgl1iaVAa",
+  "password": "$2b$10$FfJb.O44e2kdIWY8Wt2Hd.UbiKal4DDHKDTaIUqxsG461E4c7qAJO",
   "avatar": "image1692661226000.jpg"
  },
  {
@@ -13,7 +13,7 @@
   "lastName": "Teste",
   "email": "joseteste@example.com",
   "password": "$2b$10$eaZrCvYLHoBE0BEs78N6Oe0jju9fH2vMgrGROdK3xSmNwmbM3J4jO",
-  "avatar": "image1693245346529.jpg"
+  "avatar": "default.jpg"
  },
  {
   "id": 3,
@@ -21,6 +21,14 @@
   "lastName": "Teste",
   "email": "sueliteste@example.com",
   "password": "$2b$10$f4Sux44BZdhCZ9YNeY2JB.qUtJgkPAsfAU.eO79rh.cbKGbhd9G7S",
-  "avatar": "image1693245430715.jpg"
+  "avatar": "default.jpg"
+ },
+ {
+  "id": 4,
+  "name": "teste",
+  "lastName": "teste",
+  "email": "teste@example.com",
+  "password": "$2b$10$Aldx/v9/Qu9z.y/Oti4nuufwuuWpf3OprptXxVrKVzB4nctNglCIW",
+  "avatar": "default.jpg"
  }
 ]

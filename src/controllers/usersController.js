@@ -34,11 +34,11 @@ const usersController = {
             } else if (req.body.password.length < 6) {
                 errors.password = new Error('A senha deve ter pelo menos 6 caracteres.');
             }
-
             if (!req.file) {
-                errors.avatar = new Error('Selecione uma imagem para realizar o cadastro.')
+                req.file = {
+                    filename: 'default.jpg'
+                };
             }
-
             if (Object.keys(errors).length === 0) {
                 Users.create(req);
                 res.redirect('/login'); // Redireciona para a página de login após o registro bem-sucedido
@@ -103,14 +103,39 @@ const usersController = {
         try {
             const userId = req.session.user.id;
             const newData = req.body;
+            
+            const inpName = req.body.name;
+            const inpLast = req.body.lastName;
+            const inpEmail = req.body.email;
 
-            Users.editAccount(userId, newData);
-            res.redirect('/profile')
-        } catch {
-            console.log('tedas')
+            if(!inpName || !inpLast || !inpEmail){
+                throw new Error('Todos os campos devem ser preenchidos.')
+            }else if (!inpEmail ||
+                (!inpEmail.includes("@") ||
+                    (!inpEmail.includes(".com") && !inpEmail.includes(".com.br")))) {
+                errors.email = new Error('Insira um email válido');
+            }
+            if (Users.compareEmail(req.session.user.email, inpEmail)) {
+                
+            }else if (Users.findUserByfield('email', inpEmail)) {
+                errors.email = new Error('Esse email já está sendo utilizado.');
+            }
+            
+            if(Object.keys(errors).length === 0){
+                Users.editAccount(userId, newData);
+                req.session.user.email = inpEmail;
+                res.redirect('/profile')
+            }else{
+                res.render('profile',{
+                    errors: errors
+                })
+            }
+            
+        } catch(err) {
+            res.render('profile',{
+                error: err.message
+            })
         }
-
-
     },
 
     editPass: (req, res) => {
@@ -124,8 +149,12 @@ const usersController = {
             if (currentPassword || newPassword || confirmNewPass) {
                 if (!currentPassword) {
                     errors.currentPassword = new Error('Insira sua senha atual.')
-
-                } 
+                }
+                if(currentPassword){
+                    if(!Users.comparePass(userId, currentPassword)){
+                        throw new Error('Senha atual incorreta.')
+                    }
+                }
                 if (!newPassword) {
                     errors.newPassword = new Error('Insira a sua nova senha.')
                 }else if(newPassword.length <= 6){
@@ -152,6 +181,23 @@ const usersController = {
             res.render('profile', {
                 error: err.message,
             })
+        }
+    },
+    editAvatar: (req, res)=>{
+        const errors = {};
+        const userId = req.session.user.id;
+        const image = req.file;
+        console.log(image)
+        if(!image){
+            errors.newAvatar = new Error('Selecione uma imagem.')
+        }
+        if(Object.keys(errors).length === 0){
+            const validacao = Users.editAvatar(userId, image);
+            if(validacao){
+                res.redirect('/profile')
+            }
+        }else{
+            res.render('profile',{errors: errors});
         }
     },
     logout: (req, res) => {
